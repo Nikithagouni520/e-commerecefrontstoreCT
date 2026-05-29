@@ -1,0 +1,4 @@
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useStore } from '../context/StoreContext.jsx';
+export default function Login(){ const { login }=useStore(); const nav=useNavigate(); const [f,setF]=useState({email:'',password:''}); const submit=async(e)=>{e.preventDefault(); await login(f.email,f.password); nav('/products');}; return <form className="form auth" onSubmit={submit}><h1>Login</h1><input placeholder="Email" value={f.email} onChange={e=>setF({...f,email:e.target.value})}/><input placeholder="Password" type="password" value={f.password} onChange={e=>setF({...f,password:e.target.value})}/><button className="primary big">Login</button><p>No account? <Link to="/register">Register</Link></p><small>Admin: admin@example.com / admin123</small></form> }
